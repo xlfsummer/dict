@@ -14,34 +14,35 @@ module.exports = {
     getConfig() {
         let isExist = fs.existsSync(CONFIG_PATH);
 
-        if (!isExist) createConfig(configPath);
+        if (!isExist) this.createConfig(CONFIG_PATH);
 
         let content = fs.readFileSync(CONFIG_PATH, "utf8");
 
         let config;
         try {
-            JSON.parse(content);
+            return JSON.parse(content);
         } catch (e) {
             /** @type {Error} */(e).message = "parse config file failed"
             fs.unlinkSync(CONFIG_PATH);
+            
+            return this.getConfig()
         }
+    },
+    createConfig(){
+        fs.writeFileSync(CONFIG_PATH, JSON.stringify({key: 123456}));
     }
 }
 
 
+// let config = readConfig(configPath);
 
+// function createConfig(configPath) { 
+//     let rl = readline.createInterface({
+//         input: process.stdin,
+//         output: process.stdout
+//     })
 
-
-
-let config = readConfig(configPath);
-
-function createConfig(configPath) { 
-    let rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    })
-
-    rl.question("123", answer => {
-        console.log(answer + 555);
-    })
-}
+//     rl.question("123", answer => {
+//         console.log(answer + 555);
+//     })
+// }

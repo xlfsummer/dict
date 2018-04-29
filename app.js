@@ -1,9 +1,8 @@
 
-let config = require("./scripts/configManager");
+let configManager = require("./scripts/configManager");
 
+var config = configManager.getConfig();
 
-serach()
+console.log(config);
 
-function readConfig() { 
-
-}
+// serach()

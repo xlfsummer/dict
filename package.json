@@ -20,5 +20,7 @@
     "url": "https://github.com/xlfsummer/dict/issues"
   },
   "homepage": "https://github.com/xlfsummer/dict#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^22.4.3"
+  }
 }
