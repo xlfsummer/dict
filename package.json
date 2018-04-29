@@ -1,0 +1,24 @@
+{
+  "name": "cli-dict",
+  "version": "1.0.0",
+  "description": "A commad line dictionary use node js, use api from Youdao.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xlfsummer/dict.git"
+  },
+  "keywords": [
+    "commandline",
+    "dictionary"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xlfsummer/dict/issues"
+  },
+  "homepage": "https://github.com/xlfsummer/dict#readme",
+  "devDependencies": {}
+}
