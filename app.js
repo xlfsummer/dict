@@ -1,8 +1,12 @@
 
 let configManager = require("./scripts/configManager");
 
-var config = configManager.getConfig();
+(async () => {
+    var config = await configManager.getConfig();
+    
+    console.log(config);
+})();
 
-console.log(config);
+
 
 // serach()
