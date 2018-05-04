@@ -14,6 +14,9 @@
     "commandline",
     "dictionary"
   ],
+  "bin": {
+    "dict": "bin/dict.js"
+  },
   "author": "",
   "license": "MIT",
   "bugs": {

@@ -1,4 +1,4 @@
-// var configManager = require('../scripts/configManager');
+// var configManager = require('../lib/configManager');
 
 // describe(configManager.getConfig, ()=>{
 //  test("",()=>{

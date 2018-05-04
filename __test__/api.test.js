@@ -1,4 +1,4 @@
-let api = require('../scripts/api');
+let api = require('../lib/api');
 
 describe(api.send, () => {
     it("fetch data", done => {
