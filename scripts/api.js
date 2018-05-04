@@ -3,14 +3,15 @@ let utils = require('./utils');
 let https = require('https');
 let { promisify } = require('util');
 let queryString = require("querystring");
+let configManager = require("./configManager");
 
-module.exports = {
+const api = module.exports = {
     search(text) {
-        return this.send({ q: text });
+        return api.send({ q: text });
     },
 
     /**
-     * 
+     *
      * @param {object} option 选项
      * @param {string} option.q 要翻译的文本 UTF-8编码
      * @param {string} option.from 源语言
@@ -19,13 +20,15 @@ module.exports = {
      * @param {string} option.salt 随机数
      * @param {string} option.sign 通过md5(appKey+q+salt+应用密钥)生成
      */
-    send(option = {}) {
-        
+    async send(option = {}) {
+
+        let config = await configManager.getConfig();
+
         option = {
-            q: "你好", 
+            q: "你好",
             from: "auto",
             to: "auto",
-            appKey: "488cd28f1749c93e",
+            appKey: config.appKey,
             ...option
         }
 
@@ -35,23 +38,24 @@ module.exports = {
 
         option.salt = salt;
 
-        let appSecret = "794R5bA6OGdig5N1cFm5IF4R9qRaYDjs";
+        let appSecret = config.appSecret;
 
         option.sign = utils.md5(appKey + q + salt + appSecret);
-        
+
         for ([k, v] of Object.entries(option)) option[k] = encodeURIComponent(v);
 
         let query = queryString.stringify(option);
 
         let url = "https://openapi.youdao.com/api?" + query;
 
-        console.log(url);
-    
-        return this.get(url);
+
+        let result = await api.get(url);
+
+        return JSON.parse(result);
     },
 
     /**
-     * @param {string} url 
+     * @param {string} url
      * @returns {Promise<string>}
      */
     get(url) {

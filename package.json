@@ -22,5 +22,8 @@
   "homepage": "https://github.com/xlfsummer/dict#readme",
   "devDependencies": {
     "jest": "^22.4.3"
+  },
+  "dependencies": {
+    "colors": "^1.2.3"
   }
 }
