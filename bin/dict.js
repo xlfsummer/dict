@@ -38,7 +38,7 @@ async function parseArg(argv) {
 
     let from = retriveCommandWithArg('-f') || retriveCommandWithArg('--from');
     from && (option.from = from);
-    
+
     let to = retriveCommandWithArg('-t') || retriveCommandWithArg('--to');
     to && (option.to = to);
 
