@@ -18,13 +18,7 @@ async function parseArg(argv) {
 
     let option = {};
 
-    let noArg = argv.length == 0;
-    if (noArg) {
-        console.log("need arg");
-        return;
-    }
-
-    let help = retriveBoolArg('-h') || retriveBoolArg('--help');
+    help = argv.length == 0 || retriveBoolArg('-h') || retriveBoolArg('--help');
     if (help) {
         Help.show();
         return;
