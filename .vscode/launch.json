@@ -14,11 +14,23 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "启动程序 - word 参数",
+            "name": "启动程序 - coffee 参数",
             "program": "${workspaceFolder}\\bin\\dict.js",
             "args": [
                 "-",
-                "word"
+                "coffee"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "启动程序 你好 -t ja",
+            "program": "${workspaceFolder}\\bin\\dict.js",
+            "args": [
+                "你好",
+                "-t",
+                "ja"
             ],
             "console": "integratedTerminal"
         }

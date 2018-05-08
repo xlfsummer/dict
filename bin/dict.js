@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
 let process = require('process');
-let configManager = require("../lib/configManager");
+let ConfigManager = require("../lib/configManager");
 let api = require("../lib/api");
 let search = require("../lib/search");
 let Translation = require('../lib/translation');
 let Help = require('../lib/help');
+let Cli = require('../lib/cli');
 
 parseArg(process.argv.slice(2))
 // return;
@@ -14,72 +15,39 @@ parseArg(process.argv.slice(2))
  * @param {string[]} argv
  */
 async function parseArg(argv) {
-    await configManager.checkConfig();
+
+
+    /** @type {(optionName: string, optionParamCount?: number) => string|boolean} */
+    let getOption = Cli.retriveOption.bind(Cli, argv);
+    let exit = process.exit.bind(process, 0);
+
+    await ConfigManager.checkConfig();
 
     let option = {};
+    let isPreserve = false;
 
-    help = argv.length == 0 || retriveBoolArg('-h') || retriveBoolArg('--help');
-    if (help) {
-        Help.show();
-        return;
-    }
+    if (argv.length == 0) Help.run();
+    Cli.switchOption(argv, [
+        ['-h',        0,  Help.run],
+        ['--help',    0,  Help.run],
+        ['-c',        0,  ConfigManager.open],
+        ['--config',  0,  ConfigManager.open],
+        ['-o',        0,  _ => option.online = !0],
+        ['--online',  0,  _ => option.online = !0],
+        ['-f',        1,  f => option.from = f],
+        ['--from',    1,  f => option.from = f],
+        ['-t',        1,  t => option.to = t],
+        ['--to',      1,  t => option.to = t],
+        ['-d',        0,  _ => option.detail = !0],
+        ['-detail',   0,  _ => option.detail = !0],
+        ['-',         0,  _ => isPreserve = true]
+    ]);
 
-    let editConfig = retriveBoolArg('--edit-config');
-    if (editConfig) {
-        await configManager.writeConfig();
-        return;
-    }
+    let translateText = argv.join(' ');
 
-    let from = retriveCommandWithArg('-f') || retriveCommandWithArg('--from');
-    from && (option.from = from);
+    await Translation.query(translateText, option);
 
-    let to = retriveCommandWithArg('-t') || retriveCommandWithArg('--to');
-    to && (option.to = to);
+    if (isPreserve) await search.loop(option);
 
-    let detail = retriveBoolArg('-d') || retriveBoolArg('--detail');
-    option.detail = detail;
-
-    function retriveCommandWithArg(commandStr) {
-        let commandIndex = argv.indexOf(commandStr);
-
-        if (commandIndex == -1) return null;
-        if (!((commandIndex + 1) in argv)) return null;
-
-        let commadArg = argv.splice(commandIndex, 2)[1];
-        return commadArg;
-    }
-
-    function retriveBoolArg(commandStr) {
-        let i = argv.indexOf(commandStr);
-        if (i == -1) return false;
-        argv.splice(i, 1);
-        return true;
-    }
-
-    let isPreserve = argv.includes('-');
-    if (!isPreserve) {
-        let translateText = argv.join(' ');
-        await Translation.query(translateText);
-        return;
-    }
-
-    if (isPreserve) {
-        let translateText = argv.join(' ');
-        await Translation.query(translateText);
-        await search.loop();
-    }
-
-    let commad = {
-        '': 'translate',
-        '-': 'translate',
-        '-f': 'from',
-        '--from': 'from',
-        '-t': 'to',
-        '--to': 'to',
-        '-h': 'help',
-        '--help': 'help',
-        '-d': 'detail',
-        '--detail': 'detail',
-        '--edit-config': 'edit-config',
-    }
+    return;
 }
