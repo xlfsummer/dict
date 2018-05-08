@@ -1,6 +1,6 @@
-// var configManager = require('../lib/configManager');
+// var Config = require('../lib/Config');
 
-// describe(configManager.getConfig, ()=>{
+// describe(Config.getConfig, ()=>{
 //  test("",()=>{
 //     expect()
 //  })

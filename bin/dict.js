@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 let process = require('process');
-let ConfigManager = require("../lib/configManager");
+let Config = require("../lib/config");
 let api = require("../lib/api");
 let search = require("../lib/search");
 let Translation = require('../lib/translation');
@@ -21,7 +21,7 @@ async function parseArg(argv) {
     let getOption = Cli.retriveOption.bind(Cli, argv);
     let exit = process.exit.bind(process, 0);
 
-    await ConfigManager.checkConfig();
+    await Config.checkConfig();
 
     let option = {};
     let isPreserve = false;
@@ -30,8 +30,8 @@ async function parseArg(argv) {
     Cli.switchOption(argv, [
         ['-h',        0,  Help.run],
         ['--help',    0,  Help.run],
-        ['-c',        0,  ConfigManager.open],
-        ['--config',  0,  ConfigManager.open],
+        ['-c',        0,  Config.open],
+        ['--config',  0,  Config.open],
         ['-o',        0,  _ => option.online = !0],
         ['--online',  0,  _ => option.online = !0],
         ['-f',        1,  f => option.from = f],
@@ -40,7 +40,7 @@ async function parseArg(argv) {
         ['--to',      1,  t => option.to = t],
         ['-d',        0,  _ => option.detail = !0],
         ['-detail',   0,  _ => option.detail = !0],
-        ['-',         0,  _ => isPreserve = true]
+        ['-',         0,  _ => isPreserve = !0]
     ]);
 
     let translateText = argv.join(' ');
