@@ -3,12 +3,27 @@
 
 ## 功能说明
 
-- 支持单词查询，详细|简略可调
-- 支持句子翻译
-- 支持 9 种语言的相互翻译
-- 支持连续查询
-- 可从 Windows 搜索快速启动
-- 支持跳转到网页词典界面
+- 支持单词查询，详细/简略模式  
+使用 `-d` 或 `--detail` 显示更多内容  
+![详细查询](https://github.com/xlfsummer/dict/blob/master/public/dict-detail-example.png) 
+
+- 支持句子翻译  
+直接 `dict + <句子内容>` 即可翻译
+
+- 支持 9 种语言的相互翻译  
+使用 `-f` 或 `--from` 指定源语言, 使用 `-t` 或 `--to` 指定目标语言  
+![翻译语言](https://github.com/xlfsummer/dict/blob/master/public/dict-language.png) 
+
+- 支持连续查询  
+使用 `-` 参数, 在一次翻译结束后保留参数(`-t`, `-f`, `-d`)继续翻译  
+![连续查询](https://github.com/xlfsummer/dict/blob/master/public/dict-continue.png) 
+
+- 任何情况下可从 Windows 搜索快速启动，手指无需离开键盘  
+按 `Windows` 后直接输入 `dict - <内容>` 即可启动翻译, 翻译完成后按回车即可退出  
+![菜单启动](https://github.com/xlfsummer/dict/blob/master/public/dict-startmenu.png) 
+
+- 支持跳转到网页词典界面  
+使用 `-o` 或 `--online` 参数打开有道词典对应单词页面，查看更多更详细的释义
 
 ## 安装
 
