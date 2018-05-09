@@ -5,7 +5,7 @@
 - [功能说明](https://github.com/xlfsummer/dict#功能说明)
 - [安装](https://github.com/xlfsummer/dict#安装)
 - [首次运行](https://github.com/xlfsummer/dict#首次运行)
-- [支持的语言列表](https://github.com/xlfsummer/dict#支持的语言列表)
+- [支持的语言与语言代码对应表](https://github.com/xlfsummer/dict#支持的语言与语言代码对应表)
 
 ## 功能说明
 
