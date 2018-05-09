@@ -1,8 +1,8 @@
 {
-  "name": "cli-dict",
+  "name": "cli-dict-x",
   "version": "1.0.0",
   "description": "A commad line dictionary use node js, use api from Youdao.",
-  "main": "index.js",
+  "main": "/bin/dict.js",
   "scripts": {
     "test": "jest --watch"
   },
@@ -12,7 +12,8 @@
   },
   "keywords": [
     "commandline",
-    "dictionary"
+    "dictionary",
+    "Youdao"
   ],
   "bin": {
     "dict": "bin/dict.js"
