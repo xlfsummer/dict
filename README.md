@@ -1,5 +1,11 @@
 # dict
-一个命令行翻译工具，调用有道智云接口
+
+一个运行在 node 环境的命令行翻译工具，调用有道智云接口
+
+- [功能说明](https://github.com/xlfsummer/dict#功能说明)
+- [安装](https://github.com/xlfsummer/dict#安装)
+- [首次运行](https://github.com/xlfsummer/dict#首次运行)
+- [支持的语言列表](https://github.com/xlfsummer/dict#支持的语言列表)
 
 ## 功能说明
 
@@ -27,7 +33,7 @@
 
 ## 安装
 
-1. 使用 npm i cli-dict-x -g 安装
+- 使用 `npm i cli-dict-x -g` 安装
 
 ## 首次运行
 
