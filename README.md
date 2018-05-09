@@ -1,2 +1,35 @@
- # dict !UNDER CONSTRUCTION!
-A commad line dictionary use node js, use api from Youdao. !UNDER CONSTRUCTION!
+# dict
+一个命令行翻译工具，调用有道智云接口
+
+要使用此工具，你需要一个[有道智云](http://ai.youdao.com/)的账户。首次运行此程序时会要求填入有道智云的 appSecret 和 appKey。
+
+## 首次运行
+
+1. 注册并登录[有道智云](http://ai.youdao.com/)
+2. 应用管理 > 我的应用 > 创建应用 创建一个应用
+	- 应用名称：命令行翻译应用
+	- 应用类别: 效率办公
+	- 应用平台: API
+3. 自然语言翻译 > 翻译实例 > 创建实例
+	- 实例名称: 命令行翻译实例
+	- 实例类型: 文本翻译
+4. 自然语言翻译 > 翻译实例 > 命令行翻译实例 > 操作 > 绑定应用
+	- 选择刚创建的应用 > 提交更改
+5. 应用管理 > 我的应用 > 应用名称：命令行翻译应用
+	- 复制 "应用ID" 和 "应用密钥"
+6. 在命令行输入 `dict` 启动应用
+	- 在 appSecret 中填入应用密钥
+	- 在 appKey 中填入应用ID
+
+## 支持的语言与语言代码对应表
+语言		|代码
+---|---
+中文		|zh-CHS
+日文		|ja
+英文		|EN
+韩文		|ko
+法文		|fr
+俄文		|ru
+葡萄牙文	| pt
+西班牙文	| es
+越南文		| vi

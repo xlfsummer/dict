@@ -21,17 +21,22 @@ async function parseArg(argv) {
     let getOption = Cli.retriveOption.bind(Cli, argv);
     let exit = process.exit.bind(process, 0);
 
-    await Config.checkConfig();
+    await Config.check();
 
     let option = {};
     let isPreserve = false;
+    let isExit = 0;
 
-    if (argv.length == 0) Help.run();
+    if (argv.length == 0) {
+        Help.show();
+        return;
+    }
+
     Cli.switchOption(argv, [
-        ['-h',        0,  Help.run],
-        ['--help',    0,  Help.run],
-        ['-c',        0,  Config.open],
-        ['--config',  0,  Config.open],
+        ['-h',        0,  _=> (Help.show(), isExit = 1)],
+        ['--help',    0,  _=> (Help.show(), isExit = 1)],
+        ['-c',        0,  _=> (Config.open(), isExit = 1)],
+        ['--config',  0,  _=> (Config.open(), isExit = 1)],
         ['-o',        0,  _ => option.online = !0],
         ['--online',  0,  _ => option.online = !0],
         ['-f',        1,  f => option.from = f],
@@ -42,6 +47,8 @@ async function parseArg(argv) {
         ['-detail',   0,  _ => option.detail = !0],
         ['-',         0,  _ => isPreserve = !0]
     ]);
+
+    if (isExit) return;
 
     let translateText = argv.join(' ');
 
